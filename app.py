@@ -5,6 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
+    x = 5
     return "hihi testing"
 
 
