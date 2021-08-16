@@ -1,22 +1,15 @@
 FROM python:3.9.6 AS base
 
-COPY requirements.txt .
+COPY requirements.txt requirements.txt
 
 RUN pip install -r requirements.txt
 
-ENV HOST=0.0.0.0
-ENV PORT=80
+COPY . .
 
-COPY *.py .
+EXPOSE 5000
+ENV FLASK_RUN_HOST=0.0.0.0
+ENV FLASK_RUN_PORT=80
+ENV FLASK_APP=app.py
+ENV FLASK_ENV=development
 
-### For debugging
-
-FROM base as debugger
-
-RUN pip install debugpy
-
-ENTRYPOINT ["python", "-m", "debugpy", "--listen", "0.0.0.0:2000", "app.py"]
-
-FROM base as primary
-
-CMD ["python", "app.py"]
+CMD ["flask","run"]
