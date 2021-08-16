@@ -12,4 +12,17 @@ ENV FLASK_RUN_PORT=80
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=development
 
+
+### For debugging
+
+FROM base as debugger
+
+RUN pip install debugpy
+
+ENTRYPOINT ["python", "-m", "debugpy", "--listen", "0.0.0.0:2000", "-m", "flask", "run"]
+
+## For regular development
+
+FROM base as primary
+
 CMD ["flask","run"]
