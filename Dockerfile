@@ -11,6 +11,7 @@ ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_RUN_PORT=80
 ENV FLASK_APP=app.py
 ENV FLASK_ENV=development
+ENV SQLALCHEMY_DATABASE_URI=sqlite:////tmp/test.db
 
 
 ### For debugging
