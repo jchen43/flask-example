@@ -17,6 +17,8 @@ RUN pip install debugpy
 
 ENTRYPOINT ["python", "-m", "debugpy", "--listen", "0.0.0.0:2000", "app.py"]
 
+## For regular development
+
 FROM base as primary
 
 CMD ["python", "app.py"]
